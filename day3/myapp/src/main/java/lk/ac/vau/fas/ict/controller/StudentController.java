@@ -61,6 +61,15 @@ public class StudentController {
 	}
 	
 	//find the students whose age is between 20 and 23
+	@GetMapping("/student/age_filter")
+	public Student AgeFilter() {
+		for(Student st: students) {
+			if (st.getAge()>20 && st.getAge()<23){
+					return st;
+			}
+		}
+		return null;
+	}
 	//sort the students by their GPA
 	//create CRUD operations for students
 
