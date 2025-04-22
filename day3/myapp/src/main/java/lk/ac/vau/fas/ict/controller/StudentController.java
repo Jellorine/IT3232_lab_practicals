@@ -77,5 +77,21 @@ public class StudentController {
 		return students;
 	}
 	//create CRUD operations for students
-
+	//add a student
+	@PostMapping("student/add")
+	public String AddStudent(@RequestBody Student st) {
+		students.add(st);
+		return "Student added successfully";
+	}
+	
+	//delete a student
+	@DeleteMapping("student/delete/{regno}")
+	public String DeleteStudent(@PathVariable("regno") String regno) {
+		boolean removed = students.removeIf(st -> st.getRegNo().equals(regno));
+	    if (removed) {
+	        return "Student with RegNo " + regno + " deleted successfully.";
+	    } else {
+	        return "Student with RegNo " + regno + " not found.";
+	    }
+	}
 }
