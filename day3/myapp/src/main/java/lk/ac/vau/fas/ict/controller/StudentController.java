@@ -71,6 +71,11 @@ public class StudentController {
 		return null;
 	}
 	//sort the students by their GPA
+	@GetMapping("student/sort_by_gpa")
+	public List<Student> SortByGpa(){
+		students.sort((s1, s2) -> Double.compare(s1.getGpa(), s2.getGpa()));
+		return students;
+	}
 	//create CRUD operations for students
 
 }
