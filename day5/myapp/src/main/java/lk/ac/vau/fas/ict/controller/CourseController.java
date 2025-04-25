@@ -1,5 +1,7 @@
 package lk.ac.vau.fas.ict.controller;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import lk.ac.vau.fas.ict.model.Course;
@@ -18,4 +20,14 @@ public class CourseController extends CRUDcontroller<String, Course>{
 		
 		
 	}
+
+	@GetMapping("/all")
+    public Map<String, Course> getAllCourses() {
+        return getMap();
+    }
+	
+	@GetMapping("/{id}")
+    public Course getCourse(@PathVariable("id") String id) {
+        return getMap().get(id);
+    }
 }
