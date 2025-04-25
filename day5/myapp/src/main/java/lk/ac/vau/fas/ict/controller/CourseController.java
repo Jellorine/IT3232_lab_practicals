@@ -25,9 +25,18 @@ public class CourseController extends CRUDcontroller<String, Course>{
     public Map<String, Course> getAllCourses() {
         return getMap();
     }
-	
+
 	@GetMapping("/{id}")
     public Course getCourse(@PathVariable("id") String id) {
         return getMap().get(id);
+    }
+
+	@PostMapping("/add/{id}")
+    public String addCourse(@PathVariable("id") String id, @RequestBody Course course) {
+        if (getMap().containsKey(id)) {
+            return "Course already exists!";
+        }
+        getMap().put(id, course);
+        return "Course added successfully!";
     }
 }
