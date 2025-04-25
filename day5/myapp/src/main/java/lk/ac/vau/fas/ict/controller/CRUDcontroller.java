@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 public class CRUDcontroller<K,T> {
 	
@@ -24,7 +26,14 @@ public class CRUDcontroller<K,T> {
 	}
 	
 	// add new
-	
+	@PostMapping("/add/{id}")
+    public String add(@PathVariable("id") K id, @RequestBody T obj) {
+        if (objects.containsKey(id)) {
+            return "Item with this ID already exists!";
+        }
+        objects.put(id, obj);
+        return "Item added successfully!";
+    }
 	
 	
 	// update
